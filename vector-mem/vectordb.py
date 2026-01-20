@@ -1,13 +1,15 @@
 
 import asyncio
+import os
 from typing import Optional
 from uuid import uuid4
 from pydantic import BaseModel
 from qdrant_client import AsyncQdrantClient
 from qdrant_client.models import Distance,Filter,VectorParams,models,ScoredPoint
+from dotenv import load_dotenv
+load_dotenv()
 
-
-client=AsyncQdrantClient(url="http://localhost:6333")
+client=AsyncQdrantClient(url=os.getenv("QUDRANT_URL"))
 COLLECTION_NAME="memeries"
 
 class EmbeddedMemory(BaseModel):
